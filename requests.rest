@@ -1,0 +1,27 @@
+POST http://localhost:3003/user
+Content-Type: application/json
+
+{
+    "firstName" : "Latios",
+    "userName" : "Laticool",
+    "ign" : "LatiosinElsword",
+    "age" : 25
+}
+
+###
+GET http://localhost:3003/user
+
+
+###
+GET http://localhost:3003/product
+
+###
+POST http://localhpst:3003/product
+Content-Type: application/json
+
+{
+    "name": "Abyss Blue Mystic Stone",
+    "price": "80000000",
+    "stock": "70",
+    "image": ""
+}
