@@ -3,7 +3,7 @@ const multer = require("multer");
 const getProduct = require("../controllers/Products/getProduct");
 const addProduct = require("../controllers/Products/addProduct");
 const deleteProduct = require("../controllers/Products/deleteProduct");
-const editProducts = require("../controllers/Products/editProducts");
+const editProducts = require("../controllers/Products/editProduct");
 module.exports = (app) => {
   let upload = multer({ dest: "files/" });
 

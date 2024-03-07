@@ -1,31 +1,15 @@
 require("dotenv").config();
-const { User } = require("../models");
+const addUser = require("../controllers/Users/addUser");
+const deleteUser = require("../controllers/Users/deleteUser");
+const editUser = require("../controllers/Users/editUser");
+const getUsers = require("../controllers/Users/getUsers");
+
 module.exports = (app) => {
-  app.get("/user", async (req, res) => {
-    try {
-      let users = await User.findAll();
-      if (users.length <= 0) return res.sendStatus(404);
-      res.status(200).json(users);
-    } catch (err) {
-      return res.status(500).send(err.message);
-    }
-  });
+  app.get("/user", async (req, res) => getUsers(req, res));
 
-  app.post("/user", async (req, res) => {
-    let { firstName, lastName, userName, age, ign, discordId } = req.body;
+  app.post("/user", async (req, res) => addUser(req, res));
 
-    try {
-      await User.create({
-        userName: userName,
-        firstName: firstName,
-        ...(lastName && { lastName: lastName }),
-        ...(discordId && { discordId: discordId }),
-        ign: ign,
-        age: age,
-      });
-    } catch (err) {
-      return res.status(500).send(err.message);
-    }
-    return res.sendStatus(200);
-  });
+  app.delete("/user", async (req, res) => deleteUser(req, res));
+
+  app.put("/user", async (req, res) => editUser(req, res));
 };
