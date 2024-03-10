@@ -1,12 +1,12 @@
-const { User } = require("../../models");
 const bcrypt = require("bcrypt");
+const { User } = require("../../models");
 
 module.exports = async (req, res) => {
-  let { firstName, lastName, userName, age, ign, discordId, password } =
+  let { firstName, lastName, userName, password, age, ign, discordId } =
     req.body;
-  let salt = await bcrypt.genSaltSync(10);
-  let hash = await bcrypt.hashSync(password, salt);
-  console.log(hash);
+
+  let hash = await bcrypt.hash(password, 16);
+  if (!hash) return res.sendStatus(500);
 
   try {
     await User.create({
@@ -17,10 +17,10 @@ module.exports = async (req, res) => {
       ign,
       age,
       password: hash,
-      salt,
     });
   } catch (err) {
     return res.status(500).send(err.message);
   }
+
   return res.sendStatus(200);
 };

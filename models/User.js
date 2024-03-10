@@ -50,14 +50,6 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true,
       },
     },
-    salt: {
-      type: DataTypes.STRING,
-      unique: true,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
-    },
   });
 
   return User;
