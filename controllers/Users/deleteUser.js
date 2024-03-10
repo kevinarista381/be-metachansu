@@ -1,6 +1,7 @@
 const { User } = require("../../models");
 module.exports = async (req, res) => {
   let { id } = req.params;
+
   try {
     await User.destroy({ where: { id: id } });
   } catch (err) {

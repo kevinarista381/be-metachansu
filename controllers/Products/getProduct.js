@@ -1,5 +1,6 @@
 const { Products } = require("../../models");
 module.exports = async (req, res) => {
+  let { category_id } = req.query;
   try {
     let result = await Products.findAll();
     if (result.length <= 0) return res.sendStatus(404);
