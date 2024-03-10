@@ -9,7 +9,7 @@ module.exports = (app) => {
 
   app.post("/user", async (req, res) => addUser(req, res));
 
-  app.delete("/user", async (req, res) => deleteUser(req, res));
+  app.delete("/user/:id", async (req, res) => deleteUser(req, res));
 
-  app.put("/user", async (req, res) => editUser(req, res));
+  app.put("/user/:id", async (req, res) => editUser(req, res));
 };
